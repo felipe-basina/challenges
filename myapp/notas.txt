@@ -1,0 +1,2 @@
+docker build -t myapp .
+docker run -i --rm myapp < ../input.txt
