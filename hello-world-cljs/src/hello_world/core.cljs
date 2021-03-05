@@ -1,7 +1,7 @@
-(ns hello-world.core)
-
-(println "Hello World!")
-
-(comment
-    (defn average [a b]
-        (/ (+ a b) 2.0)))
+(ns hello-world.core
+    (:require react-dom))
+  
+;; Using React
+  (.render js/ReactDOM
+    (.createElement js/React "h2" nil "Hello, React!")
+    (.getElementById js/document "app"))
