@@ -1,0 +1,2 @@
+{"name": "John Doe", "age": 19, "job": "Seal", "city": "Los Banos"}
+{"name": "Mary Doe", "age": 24, "job": "Nurse", "city": "Lovelorn"}
