@@ -2,6 +2,6 @@
     (:require react-dom))
   
 ;; Using React
-  (.render js/ReactDOM
-    (.createElement js/React "h2" nil "Hello, React!")
-    (.getElementById js/document "app"))
+(.render js/ReactDOM
+  (.createElement js/React "h2" nil "Hello, React!")
+  (.getElementById js/document "app"))
