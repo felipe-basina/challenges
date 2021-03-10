@@ -10,3 +10,5 @@
   (r/render
     [app]
     (.getElementById js/document "app")))
+
+;; To run = npm run dev
