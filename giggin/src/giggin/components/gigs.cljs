@@ -1,4 +1,4 @@
 (ns giggin.components.gigs)
 
-(defn header []
+(defn gigs []
       [:gigs "gigs"])

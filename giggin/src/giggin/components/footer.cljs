@@ -1,4 +1,4 @@
 (ns giggin.components.footer)
 
-(defn header []
+(defn footer []
       [:footer "footer"])

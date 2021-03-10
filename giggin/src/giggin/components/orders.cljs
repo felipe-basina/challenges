@@ -1,4 +1,4 @@
 (ns giggin.components.orders)
 
-(defn header []
+(defn orders []
       [:orders "orders"])
