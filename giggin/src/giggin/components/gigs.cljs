@@ -1,5 +1,6 @@
 (ns giggin.components.gigs
-      (:require [giggin.state :as state]))
+      (:require [giggin.helpers :refer [format-price]]
+                [giggin.state :as state]))
 
 (defn gigs []
       [:main
@@ -13,7 +14,7 @@
                  {:data-tooltip "Add to order"
                   :on-click (fn [] (swap! state/orders update id inc))}
                  [:i.icon.icon--plus]] title]
-               [:p.gig__price price]
+               [:p.gig__price (format-price price)]
                [:p.gig__desc desc]]])]])
 
 (comment
