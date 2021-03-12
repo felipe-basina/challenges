@@ -17,4 +17,10 @@
                 [:button.btn.btn--link.tooltip
                  {:data-tooltip "Remove"
                   :on-click (fn [] (swap! state/orders dissoc id))}
-                 [:i.icon.icon--cross]]]])]]])
+                 [:i.icon.icon--cross]]]])]
+         [:div.total
+          [:hr]
+          [:div.item
+           [:div.content "Total"]
+           [:div.action
+            [:div.price (str "$" (reduce + (map #(* (get-in @state/gigs [(first %) :price]) (last %)) @state/orders)))]]]]]])
