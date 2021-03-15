@@ -15,3 +15,11 @@
 ;(def copies-gen gen/nat)
 (def copies-gen (gen/such-that (complement zero?) gen/nat))
 (println (gen/sample copies-gen))
+
+(def book-gen
+  (gen/hash-map :title title-gen :author author-gen :copies copies-gen))
+(println (gen/sample book-gen))
+
+(def inventory-gen
+  (gen/not-empty (gen/vector book-gen)))
+(println (gen/sample inventory-gen))
