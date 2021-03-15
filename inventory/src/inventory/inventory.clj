@@ -1,9 +1,5 @@
 (ns inventory.inventory)
 
-(def books [{:title "2001" :author "Clarke" :copies 2}
-                {:title "Emma" :author "Austen" :copies 10}
-                {:title "Misery" :author "King" :copies 101}])
-
 (defn find-by-title
   "Search for a book by title,
   where title is a string and books is a collection
