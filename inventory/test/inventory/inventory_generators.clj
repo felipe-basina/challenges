@@ -2,6 +2,7 @@
   (:require [inventory.inventory :as inventory]
             [clojure.test :refer :all]
             [clojure.test.check :as tc]
+            [clojure.test.check.clojure-test :as ctest]
             [clojure.test.check.generators :as gen]
             [clojure.test.check.properties :as prop]))
 
@@ -37,3 +38,11 @@
                                                               :title)
                                                           (:inventory i-and-b))
                                  (:book i-and-b))))
+
+(ctest/defspec find-by-title-finds-books 50
+               (prop/for-all [i-and-b inventory-and-book-gen]
+                             (= (inventory/find-by-title (-> i-and-b
+                                                             :book
+                                                             :title)
+                                                         (:inventory i-and-b))
+                                (:book i-and-b))))
