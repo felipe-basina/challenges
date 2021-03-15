@@ -15,8 +15,18 @@
       (is (contains? some-book :author))
       (is (contains? some-book :copies)))))
 
+(deftest test-not-find-by-title
+  (testing "not find by title"
+    (let [some-book (inventory/find-by-title "2002" books)]
+      (is (nil? some-book)))))
+
 (deftest test-number-of-copies-of
   (testing "get the number of copies"
     (let [copies (inventory/number-of-copies-of "Emma" books)]
       (is (> copies 0))
       (is (= copies 10)))))
+
+(deftest test-number-of-copies-of-not-exist
+  (testing "number of copies nonexistent"
+    (let [copies (inventory/number-of-copies-of "Emmb" books)]
+      (is (nil? copies)))))
