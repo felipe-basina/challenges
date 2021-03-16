@@ -38,5 +38,13 @@
             {:title "Misery" :responsible "King" :copies 101}])
 (s/valid? :inventory.books/book (first books))
 (s/valid? ::book (last books))
+(def coll-of-books (s/coll-of ::book))
+(s/valid? coll-of-books books) ; false because there is a map with keyword :responsible
+(s/explain coll-of-books books)
+
+(def books2 [{:title "2001" :author "Clarke" :copies 2}
+            {:title "Emma" :author "Austen" :copies 10}
+            {:title "Misery" :author "King" :copies 101}])
+(s/valid? coll-of-books books2)
 
 
