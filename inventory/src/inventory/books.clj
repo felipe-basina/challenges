@@ -19,8 +19,24 @@
 (def collection-of-str '("Alice" "in" "wonderland"))
 (s/valid? coll-of-strings collection-of-str)
 
+; Validation with CAT
+(def s-n-s-n (s/cat :s1 string? :n1 number? :s2 string? :n2 number?))
+(def movies ["Emma" 1815 "Jaws" 1974])
+(s/valid? s-n-s-n movies)
+(def movies2 ["Emma" 1815 1929 1974])
+(s/valid? s-n-s-n movies2)
+
+; Validation with KEYs
+(s/def :inventory.books/title string?)
+(s/def :inventory.books/author string?)
+(s/def :inventory.books/copies number?)
+(s/def :inventory.books/book
+  (s/keys :req-un [:inventory.books/title ::author :inventory.books/copies]))
+
 (def books [{:title "2001" :author "Clarke" :copies 2}
             {:title "Emma" :author "Austen" :copies 10}
-            {:title "Misery" :author "King" :copies 101}])
+            {:title "Misery" :responsible "King" :copies 101}])
+(s/valid? :inventory.books/book (first books))
+(s/valid? ::book (last books))
 
 
