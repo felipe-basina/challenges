@@ -1,5 +1,9 @@
 (ns giggin.core
-  (:require [reagent.core :as r]))
+  (:require [reagent.core :as r]
+            [giggin.components.header :refer [header]]
+            [giggin.components.gigs :refer [gigs]]
+            [giggin.components.orders :refer [orders]]
+            [giggin.components.footer :refer [footer]]))
 
 ;; We can also define the div like this
 ;; [:div {:class "container"}]
@@ -7,7 +11,10 @@
 (defn app
   []
   [:div.container
-   [:p {:style {:color "red"}} "Hello from ClojureJS"]])
+   [header]
+   [gigs]
+   [orders]
+   [footer]])
 
 ;; The export macro allows the main function
 ;; to be available at the HTML file
