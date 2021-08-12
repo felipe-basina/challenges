@@ -3,6 +3,7 @@
             [giggin.state :as state]))
 
 (defn total []
+      (println "state/orders" @state/orders)
       (->> @state/orders
            (map (fn [[id quant]] (* (get-in @state/gigs [id :price]) quant)))
            (reduce +)))
