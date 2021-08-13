@@ -1,5 +1,6 @@
 (ns giggin.components.gigs
-  (:require [giggin.state :as state]))
+  (:require [giggin.state :as state]
+            [giggin.helpers :refer [format-price]]))
 
 ;; This approach relies on list comprehension
 (defn gigs
@@ -16,7 +17,7 @@
                             {:data-tooltip "Add to order"
                              :on-click #(swap! state/orders update id inc)}
                             [:i.icon.icon--plus]] title]
-                          [:p.gig__price price]
+                          [:p.gig__price (format-price price)]
                           [:p.gig__desc desc]]])]])
 
 ;; This approach relies on map function
