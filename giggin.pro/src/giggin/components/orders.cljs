@@ -1,6 +1,17 @@
 (ns giggin.components.orders
   (:require [giggin.state :as state]))
 
+(comment defn total []
+         ;; Destructuring the id, qtd from each order
+         (reduce + (map (fn [[id qtd]] (* qtd (get-in @state/gigs [id :price])))
+                        @state/orders)))
+
+;; Calculating the total using thread last
+(defn total []
+      (->> @state/orders
+           (map (fn [[id qtd]] (* qtd (get-in @state/gigs [id :price]))))
+           (reduce +)))
+
 (defn orders
       []
       [:aside
@@ -18,4 +29,14 @@
                 [:button.btn.btn--link.tooltip
                  {:data-tooltip "Remove"
                   :on-click     #(swap! state/orders dissoc id)}
-                 [:i.icon.icon--cross]]]])]]])
+                 [:i.icon.icon--cross]]]])]
+        [:div.total
+         [:hr]
+         [:div.item
+          [:div.content "Total"]
+          [:div.action
+           [:div.price (total)]]
+          [:button.btn.btn--link.tooltip
+           {:data-tooltip "Remove all"
+            :on-click     #(reset! state/orders {})}
+           [:i.icon.icon--delete]]]]]])
