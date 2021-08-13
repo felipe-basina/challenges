@@ -35,3 +35,9 @@
                                [:p.gig__price (:price gig)]
                                [:p.gig__desc (:desc gig)]]])
                          (vals @state/gigs))]]))
+
+
+;; Different ways to associate a symbol to a value
+(defn greet-1 [name] (str "Hello " name))
+(def greet-2 (fn [name] (str "Hello " name)))
+(def greet-3 #(str "Hello " %))
