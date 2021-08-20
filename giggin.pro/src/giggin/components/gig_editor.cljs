@@ -15,7 +15,7 @@
                             :on-change #(swap! values assoc (keyword id) (.. % -target -value))}]])
 
 (defn gig-editor
-      [modal values]
+      [modal values insert-gig]
       [:div.modal (when @modal {:class "active"}) ; when "modal" is available set the class "active
        [:div.modal__overlay]
        [:div.modal__container
@@ -36,4 +36,5 @@
          {:on-click #(reset! modal false)}
          "Cancel"]
         [:button.btn.btn--secondary
+         {:on-click #(insert-gig @values)}
          "Save"]]]])
