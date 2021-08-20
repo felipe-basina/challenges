@@ -11,32 +11,39 @@
 (defn gigs
       []
       (let [modal (r/atom {:active false})
-            values (r/atom {:id       nil
+            initial-values {:id       nil
                             :title    ""
                             :desc     ""
                             :price    0
                             :img      ""
-                            :sold-out false})
+                            :sold-out false}
+            values (r/atom initial-values)
             add-to-order #(swap! state/orders update % inc)
             toggle-modal (fn [{:keys [active gig]}]
                              (swap! modal assoc :active active)
                              (reset! values gig))
-            upsert-gig (fn [{:keys [id title desc price img sold-out]}]
-                           (swap! state/gigs assoc id {:id       (or id (str "gig-" (random-uuid))) ; Use 'id' if it exists, otherwise generates a new id
-                                                       :title    (str/trim title)
-                                                       :desc     (str/trim desc)
-                                                       :price    (js/parseInt price)
-                                                       :img      (str/trim img)
-                                                       :sold-out sold-out})
-                           (toggle-modal {:active false :gig {}}))]
+            upsert-gig (fn [{:keys [id title desc price img sold-out] :as ori-map}]
+                           ; Use 'id' if it exists, otherwise generates a new id
+                           (let [gig-id (or id (str "gig-" (random-uuid)))]
+                                (swap! state/gigs assoc gig-id {:id       gig-id
+                                                                :title    (str/trim title)
+                                                                :desc     (str/trim desc)
+                                                                :price    (js/parseInt price)
+                                                                :img      (str/trim img)
+                                                                :sold-out sold-out}))
+                           (toggle-modal {:active false :gig initial-values}))]
            [:main
             [:div.gigs
              [:button.add-gig
-              {:on-click #(toggle-modal {:active true :gig {}})}
+              {:on-click #(toggle-modal {:active true :gig initial-values})}
               [:div.add__title
                [:i.icon.icon--plus]
                [:p "Add gig"]]]
-             [gig-editor modal values upsert-gig toggle-modal]
+             [gig-editor {:modal        modal
+                          :values       values
+                          :upsert-gig   upsert-gig
+                          :toggle-modal toggle-modal
+                          :initial-values initial-values}]
              ;; Using destructuring to get the items from the map
              ;; So it is not needed to get values from map as (:keyword my-map)
              ;; and using :as we can get the full map as well
