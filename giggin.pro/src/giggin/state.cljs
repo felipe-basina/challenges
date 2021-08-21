@@ -4,7 +4,12 @@
 ;; Storage to selected orders
 (def orders (r/atom {}))
 
-(def gigs (r/atom {:gig-01 {:id :gig-01
+(def gigs (r/atom {}))
+
+;; This was used when not integrating
+;; to the API
+(comment
+  def gigs (r/atom {:gig-01 {:id :gig-01
                             :title "Macaron"
                             :artist "Baher Khairy"
                             :desc "Sweet meringue-based rhythms with smooth and sweet injections of soul"
