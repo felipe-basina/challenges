@@ -15,8 +15,8 @@
                             :on-change #(swap! values assoc (keyword id) (.. % -target -value))}]])
 
 (defn gig-editor
-      [{:keys [modal values upsert-gig toggle-modal]}]
-      (let [{:keys [title desc img price sold-out initial-values]} @values]
+      [{:keys [modal values upsert-gig toggle-modal initial-values]}]
+      (let [{:keys [title desc img price sold-out]} @values]
            [:div.modal (when (:active @modal) {:class "active"}) ; when "modal" is available set the class "active
             [:div.modal__overlay]
             [:div.modal__container
