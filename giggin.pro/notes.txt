@@ -1,0 +1,5 @@
+1. Connect to nrepl through leiningen
+lein repl :connect localhost:3333
+
+2. Getting into cljs context (REPL App Select)
+(shadow.cljs.devtools.api/nrepl-select :app)
