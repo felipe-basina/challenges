@@ -7,5 +7,5 @@ lein repl :connect localhost:3333
 3. NVM
 https://tecadmin.net/install-nvm-macos-with-homebrew/
 source ~/.bash_profile
-nvm
+nvm ls
 nvm use v8.11.3
