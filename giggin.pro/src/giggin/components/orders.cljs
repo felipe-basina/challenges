@@ -23,7 +23,10 @@
       (let [remove-from-order #(swap! state/orders dissoc %)
             remove-all-orders #(reset! state/orders {})]
            [:aside
-            [admin-panel]
+            ;; This button is necessary when needed to send to firebase
+            ;; all the items returned by the API
+            (when @state/user
+                  [admin-panel])
             (if (empty? @state/orders)
               [:div.empty
                [:div.title "You don't have any orders"]
