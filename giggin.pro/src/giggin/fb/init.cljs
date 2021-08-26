@@ -1,7 +1,8 @@
 (ns giggin.fb.init
   (:require ["firebase/app" :as firebase]
             ["firebase/database"]
-            ["firebase/auth"]))
+            ["firebase/auth"]
+            [giggin.fb.auth :refer [on-auth-state-changed]]))
 
 (defn firebase-init
       []
@@ -12,4 +13,5 @@
                                      :authDomain  "poc-login-1.firebaseapp.com"
                                      :databaseURL "https://poc-login-1.firebaseio.com"
                                      :projectId   "poc-login-1"})
-        (firebase/app)))
+        (firebase/app))
+      (on-auth-state-changed))
