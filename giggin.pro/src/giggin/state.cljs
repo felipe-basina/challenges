@@ -6,6 +6,8 @@
 
 (def gigs (r/atom {}))
 
+(def user (r/atom nil))
+
 ;; This was used when not integrating
 ;; to the API
 (comment
