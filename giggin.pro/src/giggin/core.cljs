@@ -5,7 +5,8 @@
             [giggin.components.orders :refer [orders]]
             [giggin.components.footer :refer [footer]]
             [giggin.api :as api]
-            [giggin.fb.init :refer [firebase-init]]))
+            [giggin.fb.init :refer [firebase-init]]
+            [giggin.fb.db :refer [db-subscribe]]))
 
 ;; We can also define the div like this
 ;; [:div {:class "container"}]
@@ -22,8 +23,10 @@
 ;; to be available at the HTML file
 (defn ^:export main
       []
-      (api/fetch-gigs)
+      ;; Fetching data from the API
+      ;;(api/fetch-gigs)
       (r/render
         [app]
         (.getElementById js/document "app"))
-      (firebase-init))
+      (firebase-init)
+      (db-subscribe ["gigs"]))
