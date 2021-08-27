@@ -7,6 +7,7 @@ It is developed to practice working with React + ClojureScript (cljs)
 # Stack
 This web application relies on the following frameworks:
 - **[Reagent](https://github.com/reagent-project/reagent)** Provides an interface to work with React
+- **Firebase** Provides the infrastructure for storage and hosting
 
 # Prerequisites
 
