@@ -19,14 +19,19 @@
        [orders]
        [footer]])
 
+(defn ^:dev/after-load start
+      []
+      (r/render
+        [app]
+        (.getElementById js/document "app")))
+
 ;; The export macro allows the main function
 ;; to be available at the HTML file
 (defn ^:export main
       []
+      "Function which runs, only once, at the very beginning for initializing the application"
       ;; Fetching data from the API
       ;;(api/fetch-gigs)
-      (r/render
-        [app]
-        (.getElementById js/document "app"))
+      (start)
       (firebase-init)
       (db-subscribe ["gigs"]))
